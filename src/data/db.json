@@ -1,19 +1,19 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "user": "Admin",
-        "email": "admin23@gmail.com",
-        "pwd": "Ad123min"
-      }
-    ],
-    "pets": [
-      {
-        "id": 1,
-        "name": "Shiro",
-        "service": "Medicate",
-        "ownerName": "Mike",
-        "is_completed": false
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "user": "Admin",
+      "email": "admin23@gmail.com",
+      "pwd": "Ad123min"
+    }
+  ],
+  "pets": [
+    {
+      "id": 1,
+      "name": "Shiro",
+      "service": "Medicate",
+      "ownerName": "Mike",
+      "is_completed": false
+    }
+  ]
+}

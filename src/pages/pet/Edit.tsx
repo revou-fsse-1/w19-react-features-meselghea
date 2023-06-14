@@ -1,7 +1,5 @@
-function Edit () {
-    return (
-        <></>
-    )
+function Edit() {
+  return <></>;
 }
 
-export default Edit
+export default Edit;

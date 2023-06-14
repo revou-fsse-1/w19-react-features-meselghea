@@ -1,7 +1,5 @@
-function Add () {
-    return (
-        <></>
-    )
+function Add() {
+  return <></>;
 }
 
-export default Add
+export default Add;
