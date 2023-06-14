@@ -2,7 +2,7 @@ import { createContext, ReactNode, useState } from 'react';
 import axios from 'axios';
 
 type Pet = {
-id: number;
+id: string;
 name: string;
 service: string;
 ownerName: string;
@@ -30,13 +30,9 @@ const defaultContext: AppContextType = {
 export const Provider = ({ children } : ProviderProps ) => {
     const [pets, setPets] = useState<Pet[]>([]);
     const fetchListPets = async () => {
-        try {
-        const response = await axios.get('http://localhost:3006/pets');
-        setPets(response.data);
-        } catch (error) {
-        console.error('Error fetching pets:', error);
+        const response = await axios.get('https://64263f33d24d7e0de46c68c3.mockapi.io/pets');
+        setPets(response.data)
         }
-        };
 return (
 <AppContext.Provider value={{pets, fetchListPets}}>
     {children}

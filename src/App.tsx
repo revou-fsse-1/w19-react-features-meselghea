@@ -1,6 +1,5 @@
-import { List } from './pages/pet/List'
-
-import { Provider } from './pages/pet/Provider';
+import List  from './pages/pet/List'
+import { Provider } from './pages/pet/Provider'
 
 function App() {
   return (
