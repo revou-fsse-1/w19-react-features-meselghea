@@ -10,6 +10,14 @@ const List = () => {
     context?.fetchListPets?.();
   }, []);
   
+  const handleDelete = async (id: string) => {
+    const petToDelete = context?.pets?.find((pet) => pet.id === id);
+    if (petToDelete) {
+      context?.deletePet?.(petToDelete);
+    }
+  };
+
+  
   return (
     <>
       <div className="flex flex-col justify-center mt-6">
@@ -52,7 +60,7 @@ const List = () => {
                   <button onClick={() => navigate(`/edit/${pet.id}`)} className="inline-flex items-center px-2 py-1 mr-1 text-xl text-white bg-blue-600 rounded-md font-large hover:bg-blue-700">
                   ✎
                   </button>
-                  <button className="inline-flex items-center px-3 py-1 ml-1 text-xl text-white bg-red-600 rounded-md font-large hover:bg-red-700">
+                  <button onClick={() => handleDelete(pet.id)} className="inline-flex items-center px-3 py-1 ml-1 text-xl text-white bg-red-600 rounded-md font-large hover:bg-red-700">
                   x
                   </button>
                 </td>
