@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const validationSchema = object().shape({
     username: string().required("Username is required"),
     password: string().required("Password is required"),
@@ -71,6 +73,8 @@ const Login: React.FC = () => {
           >
             Submit
           </button>
+          <p>  Are you a new groomer? <button onClick={()=>navigate("/register")}> <p className="underline-offset-3">Register here</p></button>
+                        </p>
         </form>
       </div>
     </div>
