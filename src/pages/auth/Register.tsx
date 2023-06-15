@@ -1,10 +1,12 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
   const validationSchema = object().shape({
     username: string()
       .required("Username is required")
@@ -25,15 +27,14 @@ const Register: React.FC = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = () => {
-    axios
-      .post('https://64263f33d24d7e0de46c68c3.mockapi.io/users')
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const onSubmit: SubmitHandler<{ username: string; email: string; password: string; }> = async (data) => {
+    try {
+      const response = await axios.post('https://64263f33d24d7e0de46c68c3.mockapi.io/users', data);
+      console.log(response.data);
+      navigate("/login"); 
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -80,4 +81,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default Register
