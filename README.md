@@ -12,7 +12,7 @@ For this week's assignment, I'm building a front-end website using React for pet
 - Groomers can log in.
 - Pet owners can view the status of their pet's grooming on a monitor in the waiting room or on the website.
 - Pet owners is able to filter by his or her name.
-- Groomer able to create the he pet list.
+- Groomer able to create the pet list.
 - Groomer able to update the pet list.
 - Groomer able to remove pet from the list.
 - Implementing Styling (Tailwind CSS)
