@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 import axios from "axios";
 
 type Pet = {
@@ -18,7 +18,7 @@ type ReqPet = {
 }
 
 type AppContextType = {
-  filteredPets: Pet[];
+  filteredPets: Pet[]
   pets: Pet[]
   fetchListPets: () => void
   savePet: (data: ReqPet) => void
@@ -36,7 +36,11 @@ type ProviderProps = {
 export const AppContext = createContext<AppContextType>(null);
 export const Provider = ({ children }: ProviderProps) => {
   const [pets, setPets] = useState<Pet[]>([]);
-  const [filterText, setFilterText] = useState<string>('');
+  const [currentFilter, setCurrentFilter] = useState('');
+
+
+
+ 
 
   const fetchListPets = async () => {
                                 /* try { */
@@ -75,14 +79,29 @@ const updatePet = async (data: ReqPet) => {
     }
   }
 };
-
 const onFilterChange = (filterText: string) => {
-  setFilterText(filterText);
+  setCurrentFilter(filterText);
 };
-const filteredPets = pets.filter((pet) =>
-pet.ownerName.toLowerCase().includes(filterText.toLowerCase())
-);
 
+useEffect(() => {
+  const fetchFilteredPets = async () => {
+    try {
+      const response = await axios.get(
+        "https://64263f33d24d7e0de46c68c3.mockapi.io/pets",
+        {
+          params: {
+            ownerName: currentFilter,
+          },
+        }
+      );
+      setPets(response.data);
+    } catch (error) {
+      console.error("Error fetching filtered pets:", error);
+    }
+  };
+
+  fetchFilteredPets();
+}, [currentFilter]);
 const deletePet = async (pet: Pet) => {
   try {
     await axios.delete(
@@ -97,7 +116,7 @@ const deletePet = async (pet: Pet) => {
 
   return (
     <AppContext.Provider
-      value={{ pets, fetchListPets,savePet, deletePet, updatePet, onFilterChange, filteredPets, }}
+      value={{  pets, fetchListPets,savePet, deletePet, updatePet, onFilterChange, filteredPets: pets, }}
     >
       {children}
     </AppContext.Provider>

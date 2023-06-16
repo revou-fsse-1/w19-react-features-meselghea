@@ -8,6 +8,7 @@ const PrivateLayout: React.FC = () => {
       const expirationDate = parseInt(token.split("_")[4]);
       if (expirationDate < new Date().getHours()) {
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("username");
         window.location.href = "/";
       }
       return true;

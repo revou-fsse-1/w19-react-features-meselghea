@@ -37,8 +37,9 @@ const Login: React.FC = () => {
       if (userData.length > 0) {
         const userId = userData[0].id; 
         const token = generateToken(userId);
-
+        const  username = user.username
         sessionStorage.setItem("token", token);
+        sessionStorage.setItem("username", username);
         setLoading(false);
         navigate("/list", { state: { successMessage: "You have successfully logged in" } });
       } else {
