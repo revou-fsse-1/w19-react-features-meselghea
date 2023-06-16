@@ -16,7 +16,10 @@ const Register: React.FC = () => {
       .email("Invalid email address"),
     password: string()
       .required("Password is required")
-      .min(8, "Password must be at least 8 characters"),
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+        'Password must contain at least 8 characters, including at least one letter and one number'
+      ),
   });
 
   const {
