@@ -10,9 +10,9 @@ const PrivateLayout: React.FC = () => {
         sessionStorage.removeItem("token");
         window.location.href = "/";
       }
-      return true; // Token valid
+      return true;
     }
-    return false; // Token tidak ada atau sudah kedaluwarsa
+    return false; 
   }, [token]);
 
   return isTokenValid ? <Outlet /> : <Navigate to="/" />;
