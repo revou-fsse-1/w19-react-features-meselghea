@@ -75,7 +75,7 @@ const Register: React.FC = () => {
             </div>
             <button className='w-full py-3 my-1 text-center text-white rounded bg-sky-600 hover:bg-sky-700 focus:outline-none' type="submit">Submit</button>
           </form>
-            <p>  Already registered? <button onClick={()=>navigate("/login")}> <p className="underline-offset-3">Login here</p></button>
+            <p>  Already registered? <a className="underline cursor-pointer hover:text-gray-500" onClick={()=>navigate("/login")}> Login here</a>
                         </p>
         </div>
       </div>
