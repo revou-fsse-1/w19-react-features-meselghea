@@ -18,36 +18,25 @@ type ReqPet = {
 }
 
 type AppContextType = {
+  filteredPets: Pet[];
   pets: Pet[]
   fetchListPets: () => void
   savePet: (data: ReqPet) => void
   updatePet: (data: ReqPet) => void
   deletePet: (pet: Pet) => void
-};
+  onFilterChange: (filterText: string) => void;
+  
+} | null
 
 type ProviderProps = {
   children: ReactNode;
 };
 
-const defaultContext: AppContextType = {
-  pets: [],
-  fetchListPets: () => {
-    throw new Error("Function not implemented.");
-  },
-    savePet: () => {
-      throw new Error("Function not implemented.");
-  },
-  updatePet: () => {
-    throw new Error("Function not implemented.");
-},
-  deletePet: () => {
-    throw new Error("Function not implemented.");
-},
-};
 
-export const AppContext = createContext<AppContextType>(defaultContext);
+export const AppContext = createContext<AppContextType>(null);
 export const Provider = ({ children }: ProviderProps) => {
   const [pets, setPets] = useState<Pet[]>([]);
+  const [filterText, setFilterText] = useState<string>('');
 
   const fetchListPets = async () => {
                                 /* try { */
@@ -87,6 +76,12 @@ const updatePet = async (data: ReqPet) => {
   }
 };
 
+const onFilterChange = (filterText: string) => {
+  setFilterText(filterText);
+};
+const filteredPets = pets.filter((pet) =>
+pet.ownerName.toLowerCase().includes(filterText.toLowerCase())
+);
 
 const deletePet = async (pet: Pet) => {
   try {
@@ -102,7 +97,7 @@ const deletePet = async (pet: Pet) => {
 
   return (
     <AppContext.Provider
-      value={{ pets, fetchListPets,savePet, deletePet, updatePet }}
+      value={{ pets, fetchListPets,savePet, deletePet, updatePet, onFilterChange, filteredPets, }}
     >
       {children}
     </AppContext.Provider>

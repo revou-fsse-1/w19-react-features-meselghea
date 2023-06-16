@@ -1,12 +1,15 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { object, string } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useForm } from 'react-hook-form'
+import { object, string } from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { generateToken } from './JwtUtils'
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const validationSchema = object().shape({
     username: string().required("Username is required"),
     password: string().required("Password is required"),
@@ -22,6 +25,7 @@ const Login: React.FC = () => {
 
   const onSubmit = async (user: { username: string; password: string; }) => {
     try {
+      setLoading(true);
       const response = await axios.get('https://64263f33d24d7e0de46c68c3.mockapi.io/users', {
         params: {
           username: user.username,
@@ -29,16 +33,27 @@ const Login: React.FC = () => {
         },
       });
 
-      if (response.data.userExists) {
-        console.log("User exists");
+      const userData = response.data;
+      if (userData.length > 0) {
+        const userId = userData[0].id; 
+        const token = generateToken(userId);
+
+        sessionStorage.setItem("token", token);
+        setLoading(false);
+        navigate("/list", { state: { successMessage: "You have successfully logged in" } });
       } else {
-        console.log("User does not exist");
+        setError("Invalid username or password");
+        setLoading(false);
       }
     } catch (error) {
       console.error(error);
+      setError("An error occurred during authentication");
+      setLoading(false);
     }
   };
 
+
+  
   return (
     <div className="flex flex-col min-h-screen bg-grey-lighter">
     <div className="container flex flex-col items-center justify-center flex-1 max-w-sm px-2 mx-auto">
@@ -48,7 +63,7 @@ const Login: React.FC = () => {
           <div>
             <input
               className="block w-full p-3 mb-4 border rounded border-grey-light"
-              type="email"
+              type="text"
               {...register("username")}
               placeholder="Username"
             />
@@ -70,12 +85,15 @@ const Login: React.FC = () => {
           <button
             className="w-full py-3 my-1 text-center text-white rounded bg-sky-600 hover:bg-sky-700 focus:outline-none"
             type="submit"
+            disabled={loading}
           >
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </button>
-          <p>  Are you a new groomer? <button onClick={()=>navigate("/register")}> <p className="underline-offset-3">Register here</p></button>
-                        </p>
         </form>
+          <p className='text-center'>  Are you a new groomer? <a onClick={()=>navigate("/register")} className="underline cursor-pointer hover:text-gray-500">Register here</a> </p>
+          {error && (
+            <p className="mb-4 text-center text-red-500">{error}</p>
+          )}
       </div>
     </div>
   </div>
