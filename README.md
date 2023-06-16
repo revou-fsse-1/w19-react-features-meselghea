@@ -19,6 +19,17 @@ For this week's assignment, I'm building a front-end website using React for pet
 - Generate a token by multiplying UUID4 x 3, user ID, and a 12-hour expired token in session storage.
 - Implementing validation registration and login forms with react-hook-form.
 
+## Quick Start
+
+1. open [gae-petssalon.meselghea.site](https://gae-petssalon.meselghea.site/)
+2. click the Admin button in the top right corner of the page
+3. login with groomer account
+   `username: "Admin"
+email: "admin23@gmail.com"`
+4. Now you can explore the dashboard!
+
+##
+
 ![Home](./public/home.png)
 ![Register](./public/register.png)
 ![Login](./public/login.png)
