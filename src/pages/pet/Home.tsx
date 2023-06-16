@@ -1,6 +1,7 @@
 import { useContext, useEffect, ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Provider";
+import logo from "../../assets/beauty-saloon.png"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -44,8 +45,8 @@ const Home = () => {
       </header>
       <div className="flex flex-col items-center justify-center mt-16">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="mt-6 text-2xl font-semibold text-center text-white">
-            Welcome to Gae-Pets Salon!
+          <h1 className="flex items-center text-2xl font-semibold text-center text-white">
+            Welcome to  <br /> <img src={logo} alt="React Image" className="w-12 h-12 mx-2" /> Gae-Pets Salon!
           </h1>
           <h2 className="text-xl font-semibold text-white">
             Pets Grooming List
