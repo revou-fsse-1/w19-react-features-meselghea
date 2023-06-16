@@ -58,6 +58,8 @@ const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
             Hi  {sessionStorage.getItem("username")}
           </h2>
           </div>
+          <div className="bottom-0 flex items-end justify-center mt-4">
+    <div className="">
         <input
           type="text"
           placeholder="Search for Owner Name..."
@@ -65,6 +67,11 @@ const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
           value={filterText}
           onChange={handleInputChange}
         />
+        <button onClick={() => navigate('/add')} className="px-3 py-1 text-white rounded-md bg-sky-800 text-md text-m font-large hover:bg-sky-950">
+      <b>+ Add Pet</b>
+    </button>
+    </div>
+</div>
         <table className="m-4 bg-white p-7 rounded-2xl">
           <thead>
             <tr>
