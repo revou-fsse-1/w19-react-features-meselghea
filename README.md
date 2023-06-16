@@ -25,7 +25,7 @@ For this week's assignment, I'm building a front-end website using React for pet
 2. Click the Admin button in the top right corner of the page
 3. Login with groomer account
    `username: "Admin"
-email: "admin23@gmail.com"`
+password: "Ad123min"`
 4. Now you can explore the dashboard!
 
 ##
