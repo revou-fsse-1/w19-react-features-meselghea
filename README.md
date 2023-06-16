@@ -21,9 +21,9 @@ For this week's assignment, I'm building a front-end website using React for pet
 
 ## Quick Start
 
-1. open [gae-petssalon.meselghea.site](https://gae-petssalon.meselghea.site/)
-2. click the Admin button in the top right corner of the page
-3. login with groomer account
+1. Open [gae-petssalon.meselghea.site](https://gae-petssalon.meselghea.site/)
+2. Click the Admin button in the top right corner of the page
+3. Login with groomer account
    `username: "Admin"
 email: "admin23@gmail.com"`
 4. Now you can explore the dashboard!
