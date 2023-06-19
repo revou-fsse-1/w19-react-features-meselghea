@@ -59,7 +59,7 @@ const Home = () => {
           value={filterText}
           onChange={handleInputChange}
         />
-             <div className="flex flex-col items-center justify-center">
+             <div className="flex flex-col items-center justify-center  mt-7">
           <table className="m-4 bg-white p-7 rounded-2xl">
           <thead>
             <tr>
@@ -109,7 +109,7 @@ const Home = () => {
           </tfoot>
         </table>
         </div>
-        <footer className="fixed bottom-0 w-full overflow-x-hidden mt-7 bg-sky-800">
+        <footer className="fixed bottom-0 w-full overflow-x-hidden mt-15 bg-sky-800">
           <div className="md:items-center md:justify-between animate-marquee whitespace-nowrap">
             <span className="inline-block px-1 py-2 ml-1 text-sm font-bold md:px-4 md:ml-5 md:text-2xl text-neutral-300">
               🎉 50% off for the third pet! Limited time offer 🎉
