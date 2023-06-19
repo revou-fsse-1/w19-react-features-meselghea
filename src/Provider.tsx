@@ -86,6 +86,7 @@ const onFilterChange = (filterText: string) => {
 useEffect(() => {
   const fetchFilteredPets = async () => {
     try {
+    console.log(currentFilter)
       const response = await axios.get(
         "https://64263f33d24d7e0de46c68c3.mockapi.io/pets",
         {
@@ -94,6 +95,7 @@ useEffect(() => {
           },
         }
       );
+      console.log(response.data)
       setPets(response.data);
     } catch (error) {
       console.error("Error fetching filtered pets:", error);

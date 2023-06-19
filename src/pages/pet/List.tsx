@@ -29,7 +29,7 @@ const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("username");
-    navigate("/");
+    navigate("/login");
   };
 
   const handlePreviousPage = () => {
@@ -43,7 +43,8 @@ const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
   const startIndex = (currentPage - 1) * 3;
   const endIndex = startIndex + 3;
 
-  const filteredPets = context?.filteredPets || [];
+  const filteredPets = context?.pets || [];
+  console.log(filteredPets)
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-16">
@@ -54,46 +55,45 @@ const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
           <h1 className="mt-6 text-xl font-semibold text-center text-white">
             Pets Grooming List
           </h1>
-          <h2 className="text-lg font-semibold text-center text-white capitalize">
+          <h2 className="text-lg font-semibold text-center text-white capitalize ">
             Hi  {sessionStorage.getItem("username")}
           </h2>
           </div>
-          <div className="bottom-0 flex items-end justify-center mt-4">
-    <div className="">
+          <div className="flex items-center justify-center m-4 flex-co">
         <input
           type="text"
           placeholder="Search for Owner Name..."
-          className="my-4 w-[300px] p-2 font-semibold text-lg mr-4 bg-white text-slate-700 rounded-xl"
+          className="my-4 w-[300px] p-2 text-center font-semibold text-lg mr-4 bg-white text-slate-700 rounded-xl"
           value={filterText}
           onChange={handleInputChange}
         />
         <button onClick={() => navigate('/add')} className="px-3 py-1 text-white rounded-md bg-sky-800 text-md text-m font-large hover:bg-sky-950">
-      <b>+ Add Pet</b>
+        <b> + Add Pet</b>
     </button>
-    </div>
 </div>
-        <table className="m-4 bg-white p-7 rounded-2xl">
+        <table className="bg-white m-7 p-7 rounded-2xl">
           <thead>
             <tr>
-              <th className="px-8 py-4 text-center bg-blue-100 rounded-tl-2xl">No</th>
-              <th className="px-8 py-4 text-center bg-blue-100">Pets</th>
-              <th className="px-8 py-4 text-center bg-blue-100">
+              <th className="p-4 text-center bg-blue-100 rounded-tl-2xl">No</th>
+              <th className="p-6 text-center bg-blue-100">Pets</th>
+              <th className="p-4 text-center bg-blue-100">
                 Status
               </th>
-              <th className="px-8 py-4 text-left bg-blue-100 rounded-tr-2xl">Action</th>
+              <th className="p-4 text-center bg-blue-100 rounded-tr-2xl">Action</th>
             </tr>
           </thead>
-          <tbody>
+
+          <tbody onChange={()=> setCurrentPage(1)}>
           {filteredPets.slice(startIndex, endIndex).map((pet, index) => (
               <tr key={pet.id}>
-                <td className="px-8 py-4 border-y rounded-tr-2xl">{startIndex + index + 1}.</td>
-                <td className="px-8 py-4 border">
+                <td className="p-4 border-y rounded-tr-2xl">{startIndex + index + 1}.</td>
+                <td className="p-4 border">
                 <b>Owner: {pet.ownerName}</b> <br/> Name: {pet.name} Service: {pet.service}
                 </td>
-                <td className="px-8 py-4 border">
+                <td className="items-center p-4 border">
                   {pet.is_completed ? "Completed" : "Ongoing"}
                 </td>
-                <td className="items-center py-4 pl-4 border-y rounded-tr-2xl">
+                <td className="items-center justify-center border rounded-tr-2xl">
                   <button onClick={() => navigate(`/edit/${pet.id}`)} className="inline-flex items-center px-2 py-1 mr-1 text-xl text-white bg-blue-600 rounded-md font-large hover:bg-blue-700">
                   ✎
                   </button>

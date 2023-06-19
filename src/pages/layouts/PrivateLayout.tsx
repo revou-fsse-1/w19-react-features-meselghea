@@ -9,14 +9,14 @@ const PrivateLayout: React.FC = () => {
       if (expirationDate < new Date().getHours()) {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("username");
-        window.location.href = "/";
+        window.location.href = "/login";
       }
       return true;
     }
     return false; 
   }, [token]);
 
-  return isTokenValid ? <Outlet /> : <Navigate to="/" />;
+  return isTokenValid ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateLayout;

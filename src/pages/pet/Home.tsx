@@ -55,22 +55,22 @@ const Home = () => {
         <input
           type="text"
           placeholder="Search for Owner Name..."
-          className="my-4 w-[300px] p-2 font-semibold text-lg mr-4 bg-white text-slate-700 rounded-xl"
+          className="text-center my-4 w-[300px] p-2 font-semibold text-lg mr-4 bg-white text-slate-700 rounded-xl"
           value={filterText}
           onChange={handleInputChange}
         />
              <div className="flex flex-col items-center justify-center">
           <table className="m-4 bg-white p-7 rounded-2xl">
-            <thead>
-              <tr>
-                <th className="px-8 py-4 text-center bg-blue-100 rounded-tl-2xl">No</th>
-                <th className="px-8 py-4 text-center bg-blue-100">Pets</th>
-                <th className="px-8 py-4 text-center bg-blue-100 rounded-tr-2xl">
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+          <thead>
+            <tr>
+              <th className="p-4 text-center bg-blue-100 rounded-tl-2xl">No</th>
+              <th className="p-6 text-center bg-blue-100">Pets</th>
+              <th className="p-4 text-center bg-blue-100 rounded-tr-2xl">
+                Status
+              </th>
+            </tr>
+          </thead>
+            <tbody onChange={()=> setCurrentPage(1)}>
               {filteredPets.slice(startIndex, endIndex).map((pet, index) => (
                 <tr key={pet.id}>
                   <td className="px-8 py-4 border-y rounded-tr-2xl">{startIndex + index + 1}.</td>
@@ -109,7 +109,7 @@ const Home = () => {
           </tfoot>
         </table>
         </div>
-        <footer className="absolute inset-x-0 bottom-0 overflow-x-hidden bg-sky-800">
+        <footer className="absolute inset-x-0 bottom-0 mt-4 overflow-x-hidden bg-sky-800">
           <div className="md:items-center md:justify-between animate-marquee whitespace-nowrap">
             <span className="inline-block px-1 py-2 ml-1 text-sm font-bold md:px-4 md:ml-5 md:text-2xl text-neutral-300">
               🎉 50% off for the third pet! Limited time offer 🎉
